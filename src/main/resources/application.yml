@@ -1,0 +1,70 @@
+
+server:
+  port: 8090
+
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/meet?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+#  redis:
+#      host: 127.0.0.1
+#      port: 6379
+#      password: 1q2w3edmc
+#      pool:
+#        max-idle: 8
+#        min-idle: 0
+#        max-active: 8
+#        max-wait: 1000
+#      timeout: 0
+
+mybatis:
+  type-aliases-package: com.whyrkj.demo.entity
+  mapper-locations: classpath:mapping/*.xml
+
+mapper:
+  mappers:
+  - com.whyrkj.demo.config.base.BaseMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  level:
+    org.springframework: WARN
+    com.youruan: DEBUG
+
+meet:
+  wxchat:
+    appId: wx2d0c30b2d7a4c5f2
+    secret: 69062b4810d7f0d981c874ae9a5a7a2b
+    grantType: authorization_code
+
+
+upload:
+  localtion:
+    windows: /system/uploadFile/
+    linux: /var/local/system/uploadFile/
+  maxFileSize: 10240KB
+  maxRequestSize: 102400KB
